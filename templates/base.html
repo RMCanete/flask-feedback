@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+    <title>{% block title %}TITLE GOES HERE{% endblock %}</title>
+      <div class="container">
+        <nav class="navbar navbar-expand-md nav-dark bg-info">
+          <a class="navbar-brand " href="/">Feedback</a>
+          <ul class="navbar-nav btn btn-info">
+            {% if 'username' in session %}
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+</head>
+<body>
+    <div class="container">
+      {% for msg in get_flashed_messages() %}
+        <div class="alert alert-danger"> {{ msg }}</div>
+      {% endfor %}
+    {% block content %}
+    BODY CONTENT GOES HERE
+    {% endblock %}
+    </div>
+</body>
+</html>
